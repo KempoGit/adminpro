@@ -20,9 +20,9 @@ export class AccountSettingsComponent implements OnInit {
   }
 
   aplicarCheck( link: any ) {
-    const selectores: any = document.getElementsByClassName('selector');
+    let selectores: any = document.getElementsByClassName('selector');
 
-    for ( const ref of selectores ) {
+    for ( let ref of selectores ) {
       ref.classList.remove('working');
     }
 
@@ -30,9 +30,9 @@ export class AccountSettingsComponent implements OnInit {
   }
 
   colocarCheck() {
-    const selectores: any = document.getElementsByClassName('selector');
-    const tema = this._ajustes.ajustes.tema;
-    for ( const ref of selectores ) {
+    let selectores: any = document.getElementsByClassName('selector');
+    let tema = this._ajustes.ajustes.tema;
+    for ( let ref of selectores ) {
       if ( ref.getAttribute('data-theme') === tema ) {
         ref.classList.add('working');
         break;

@@ -20,6 +20,10 @@ import { PAGES_ROUTES } from './pages.routes';
 import { IncrementadorComponent } from '../components/incrementador/incrementador.component';
 import { GraficoDonaComponent } from '../components/grafico-dona/grafico-dona.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
+import { PromesasComponent } from './promesas/promesas.component';
+import { RxjsComponent } from './rxjs/rxjs.component';
+import { PavadaComponent } from './pavada/pavada.component';
+import { AlgunaComponent } from './alguna/alguna.component';
 
 
 @NgModule({
@@ -31,7 +35,11 @@ import { AccountSettingsComponent } from './account-settings/account-settings.co
         NopagefoundComponent,
         IncrementadorComponent,
         GraficoDonaComponent,
-        AccountSettingsComponent
+        AccountSettingsComponent,
+        PromesasComponent,
+        RxjsComponent,
+        PavadaComponent,
+        AlgunaComponent
     ],
     exports: [
         PagesComponent,
