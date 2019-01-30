@@ -7,7 +7,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class Graficas1Component implements OnInit {
 
-
   graficos: any = {
     'grafico1': {
       'labels': ['Manteca', 'Mermelada', 'Queso'],
@@ -22,7 +21,7 @@ export class Graficas1Component implements OnInit {
       'leyenda': 'Entrevistados'
     },
     'grafico3': {
-      'labels': ['Obama', 'Alberto Einstein', 'Kempo'],
+      'labels': ['Obama', 'Albert Einstein', 'Gastón'],
       'data':  [5, 15, 50],
       'type': 'doughnut',
       'leyenda': '¿Quien es más capo?'
@@ -31,7 +30,7 @@ export class Graficas1Component implements OnInit {
       'labels': ['No', 'Si'],
       'data':  [1, 99],
       'type': 'doughnut',
-      'leyenda': '¿Kempo presidente?'
+      'leyenda': 'Gastón presidente?'
     },
   };
 
