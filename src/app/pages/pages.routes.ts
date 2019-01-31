@@ -15,14 +15,14 @@ const pagesRoutes: Routes = [
         path: '',
         component: PagesComponent,
         children: [
-          { path: 'alguna', component: AlgunaComponent},
-          { path: 'pavada', component: PavadaComponent},
-          { path: 'dashboard', component: DashboardComponent},
-          { path: 'progress', component: ProgressComponent},
-          { path: 'graficas1', component: Graficas1Component},
-          { path: 'promesas', component: PromesasComponent},
-          { path: 'account-settings', component: AccountSettingsComponent},
-          { path: 'rxjs', component: RxjsComponent},
+            { path: 'dashboard', component: DashboardComponent, data: { titulo: 'Dashboard' } },
+            { path: 'progress', component: ProgressComponent, data: { titulo: 'Progress' } },
+            { path: 'graficas1', component: Graficas1Component, data: { titulo: 'Gráficas' } },
+            { path: 'promesas', component: PromesasComponent, data: { titulo: 'Promesas' } },
+            { path: 'rxjs', component: RxjsComponent, data: { titulo: 'RxJs' } },
+            { path: 'account-settings', component: AccountSettingsComponent, data: { titulo: 'Ajuste del tema' } },
+            { path: 'alguna', component: AlgunaComponent, data: { titulo: 'Alguna' } },
+            { path: 'pavada', component: PavadaComponent, data: { titulo: 'Pavada' } },
           { path: '', redirectTo: '/dashboard', pathMatch: 'full'}
         ]
     }
