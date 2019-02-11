@@ -5,8 +5,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProgressComponent } from './progress/progress.component';
 import { Graficas1Component } from './graficas1/graficas1.component';
 import { PromesasComponent } from './promesas/promesas.component';
-import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
+import { AccountSettingsComponent } from './account-settings/account-settings.component';
+import { ProfileComponent } from './profile/profile.component';
 import { PavadaComponent } from './pavada/pavada.component';
 import { AlgunaComponent } from './alguna/alguna.component';
 
@@ -24,6 +25,7 @@ const pagesRoutes: Routes = [
             { path: 'promesas', component: PromesasComponent, data: { titulo: 'Promesas' } },
             { path: 'rxjs', component: RxjsComponent, data: { titulo: 'RxJs' } },
             { path: 'account-settings', component: AccountSettingsComponent, data: { titulo: 'Ajuste del tema' } },
+            { path: 'perfil', component: ProfileComponent, data: { titulo: 'Perfil de usuario' } },
             { path: 'alguna', component: AlgunaComponent, data: { titulo: 'Alguna' } },
             { path: 'pavada', component: PavadaComponent, data: { titulo: 'Pavada' } },
           { path: '', redirectTo: '/dashboard', pathMatch: 'full'}

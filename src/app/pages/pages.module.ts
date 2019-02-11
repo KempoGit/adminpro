@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProgressComponent } from './progress/progress.component';
@@ -15,6 +16,10 @@ import { ChartsModule } from 'ng2-charts';
 
 import { PAGES_ROUTES } from './pages.routes';
 
+// Pipes
+
+import { PipesModule } from '../pipes/pipes.module';
+
 // Temporal
 
 import { IncrementadorComponent } from '../components/incrementador/incrementador.component';
@@ -24,6 +29,7 @@ import { PromesasComponent } from './promesas/promesas.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
 import { PavadaComponent } from './pavada/pavada.component';
 import { AlgunaComponent } from './alguna/alguna.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 @NgModule({
@@ -39,7 +45,8 @@ import { AlgunaComponent } from './alguna/alguna.component';
         PromesasComponent,
         RxjsComponent,
         PavadaComponent,
-        AlgunaComponent
+        AlgunaComponent,
+        ProfileComponent
     ],
     exports: [
         PagesComponent,
@@ -49,10 +56,12 @@ import { AlgunaComponent } from './alguna/alguna.component';
         NopagefoundComponent
     ],
     imports: [
+        CommonModule,
         SharedModule,
         PAGES_ROUTES,
         FormsModule,
-        ChartsModule
+        ChartsModule,
+        PipesModule
     ]
 })
 
