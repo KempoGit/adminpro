@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Usuario } from '../../models/usuario.model';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { URL_SERVICIOS } from '../../config/config';
 import { map } from 'rxjs/operators';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
-import { ThrowStmt } from '@angular/compiler';
 import { SubirArchivoService } from '../subir-archivo/subir-archivo.service';
+import { ModalUploadService } from '../../components/modal-upload/modal-upload.service';
 
 @Injectable({
   providedIn: 'root'
@@ -19,9 +19,16 @@ export class UsuarioService {
   constructor(
     public http: HttpClient,
     public router: Router,
-    public _subirArchivoService: SubirArchivoService
+    public _subirArchivoService: SubirArchivoService,
+    public _modalUploadService: ModalUploadService
     ) {
     this.cargarStorage();
+    this._modalUploadService.notificacion.subscribe( ( resp: any ) => {
+      if ( this.usuario._id === resp.usuario._id ) {
+        this.usuario.img = resp.usuario.img;
+        this.guardarStorage( this.usuario._id, this.token, resp.usuario );
+      }
+    });
   }
 
   estaLogueado() {
@@ -95,8 +102,10 @@ export class UsuarioService {
 
     return this.http.put( url, usuario )
     .pipe(map( (resp: any) => {
-      let usuarioDB: Usuario = resp.usuario;
-      this.guardarStorage( usuarioDB._id, this.token, usuarioDB);
+      if ( usuario._id === this.usuario._id) {
+        let usuarioDB: Usuario = resp.usuario;
+        this.guardarStorage( usuarioDB._id, this.token, usuarioDB);
+      }
       Swal.fire('Usuario actializado', usuario.nombre, 'success');
 
       return true;
@@ -115,5 +124,20 @@ export class UsuarioService {
     });
   }
 
+  cargarUsuarios( desde: number = 0 ) {
+    let url = URL_SERVICIOS + 'usuario?desde=' + desde;
+
+    return this.http.get( url );
+  }
+
+  buscarUsuario( termino: string ) {
+    let url = URL_SERVICIOS + 'busqueda/coleccion/usuarios/' + termino;
+    return this.http.get( url );
+  }
+
+  borrarUsuario( id: string ) {
+    let url = URL_SERVICIOS + 'usuario/' + id + '?token=' + this.token;
+    return this.http.delete( url );
+  }
 
 }

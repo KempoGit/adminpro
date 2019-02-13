@@ -16,16 +16,14 @@ export class SidebarService {
         { titulo: 'Promesas', url: '/promesas' },
         { titulo: 'RxJs', url: '/rxjs' }
       ]
-    }
-  ];
-
-  menu2: any = [
+    },
     {
-      titulo: 'Panel secundario',
+      titulo: 'Mantenimientos',
       icono: 'mdi mdi-emoticon-poop',
       submenu: [
-        { titulo: 'Alguna', url: '/alguna' },
-        { titulo: 'Pavada', url: '/pavada' }
+        { titulo: 'Usuarios', url: '/usuarios'},
+        { titulo: 'Hospitales', url: '/hospitales'},
+        { titulo: 'Médicos', url: '/medicos'}
       ]
     }
   ];

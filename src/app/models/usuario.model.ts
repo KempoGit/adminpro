@@ -5,7 +5,7 @@ export class Usuario {
         public email: string,
         public password: string,
         public img?: string,
-        public roll?: string,
+        public role?: string,
         public google?: Boolean,
         public _id?: string
     ) { }

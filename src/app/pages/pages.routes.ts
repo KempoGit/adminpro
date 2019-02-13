@@ -8,10 +8,9 @@ import { PromesasComponent } from './promesas/promesas.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { ProfileComponent } from './profile/profile.component';
-import { PavadaComponent } from './pavada/pavada.component';
-import { AlgunaComponent } from './alguna/alguna.component';
 
 import { LoginGuardGuard } from '../services/service.index';
+import { UsuariosComponent } from './usuarios/usuarios.component';
 
 const pagesRoutes: Routes = [
     {
@@ -26,8 +25,8 @@ const pagesRoutes: Routes = [
             { path: 'rxjs', component: RxjsComponent, data: { titulo: 'RxJs' } },
             { path: 'account-settings', component: AccountSettingsComponent, data: { titulo: 'Ajuste del tema' } },
             { path: 'perfil', component: ProfileComponent, data: { titulo: 'Perfil de usuario' } },
-            { path: 'alguna', component: AlgunaComponent, data: { titulo: 'Alguna' } },
-            { path: 'pavada', component: PavadaComponent, data: { titulo: 'Pavada' } },
+            // Mantenimiento
+            { path: 'usuarios', component: UsuariosComponent, data: { titulo: 'Mantenimiento de usuarios' } },
           { path: '', redirectTo: '/dashboard', pathMatch: 'full'}
         ]
     }
