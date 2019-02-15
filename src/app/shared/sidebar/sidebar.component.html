@@ -8,7 +8,7 @@
             <ul id="sidebarnav">
                 <li class="user-profile">
                     <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false">
-                        <img [src]="usuario.img | imagen" alt="user" />
+                        <img class="img-30 img-circle pointer" [src]="usuario.img | imagen" alt="user" />
                         <span class="hide-menu">{{ usuario.nombre }}</span>
                     </a>
                     <ul aria-expanded="false" class="collapse">
@@ -33,20 +33,9 @@
                         <li><a href="index4.html">Modern</a></li> -->
                     </ul>
                 </li>
-                <li *ngFor="let menu of _sidebar.menu2">
-                    <a class="has-arrow waves-effect waves-dark" aria-expanded="false"><i [class]="menu.icono"></i><span class="hide-menu">{{ menu.titulo }} <span class="label label-rouded label-themecolor pull-right">{{ menu.submenu.length }}</span></span></a>
-                    <ul aria-expanded="false" class="collapse">
-                        <li *ngFor="let submenu of menu.submenu">
-                            <a [routerLink]="[submenu.url]" routerLinkActive="active"> {{ submenu.titulo }} </a>
-                        </li>
-                    </ul>
-                </li>
             </ul>
         </nav>
         <!-- End Sidebar navigation -->
     </div>
     <!-- End Sidebar scroll-->
 </aside>
-<!-- ============================================================== -->
-<!-- End Left Sidebar - style you can find in sidebar.scss  -->
-<!-- ============================================================== -->

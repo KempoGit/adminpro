@@ -23,12 +23,6 @@ export class UsuarioService {
     public _modalUploadService: ModalUploadService
     ) {
     this.cargarStorage();
-    this._modalUploadService.notificacion.subscribe( ( resp: any ) => {
-      if ( this.usuario._id === resp.usuario._id ) {
-        this.usuario.img = resp.usuario.img;
-        this.guardarStorage( this.usuario._id, this.token, resp.usuario );
-      }
-    });
   }
 
   estaLogueado() {
@@ -45,8 +39,7 @@ export class UsuarioService {
     }
   }
 
-  guardarStorage( id: string, token: string, usuario: Usuario) {
-    localStorage.setItem('id', id);
+  guardarStorage( token: string, usuario: Usuario) {
     localStorage.setItem('token', token);
     localStorage.setItem('usuario', JSON.stringify(usuario));
     this.usuario = usuario;
@@ -68,7 +61,7 @@ export class UsuarioService {
 
     return this.http.post( url, { token } )
     .pipe(map( (resp: any) => {
-      this.guardarStorage(resp.id, resp.token, resp.usuario);
+      this.guardarStorage( resp.token, resp.usuario);
       return true;
     }));
   }
@@ -82,7 +75,7 @@ export class UsuarioService {
     let url = URL_SERVICIOS + 'login';
     return this.http.post(url, usuario)
     .pipe(map( (resp: any) => {
-      this.guardarStorage(resp.id, resp.token, resp.usuario);
+      this.guardarStorage( resp.token, resp.usuario);
       return true;
     }));
   }
@@ -104,7 +97,7 @@ export class UsuarioService {
     .pipe(map( (resp: any) => {
       if ( usuario._id === this.usuario._id) {
         let usuarioDB: Usuario = resp.usuario;
-        this.guardarStorage( usuarioDB._id, this.token, usuarioDB);
+        this.guardarStorage( this.token, usuarioDB);
       }
       Swal.fire('Usuario actializado', usuario.nombre, 'success');
 
@@ -117,7 +110,7 @@ export class UsuarioService {
     .then( (resp: any) => {
       this.usuario.img = resp.usuario.img;
       Swal.fire('Imagen actualizada', this.usuario.nombre, 'success');
-      this.guardarStorage(id, this.token, this.usuario);
+      this.guardarStorage( this.token, this.usuario);
     })
     .catch( resp => {
       console.log( resp );

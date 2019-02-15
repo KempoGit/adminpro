@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Usuario } from '../../models/usuario.model';
 import { UsuarioService } from 'src/app/services/service.index';
 import Swal from 'sweetalert2';
 import { ModalUploadService } from '../../components/modal-upload/modal-upload.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-usuarios',
   templateUrl: './usuarios.component.html',
   styles: []
 })
-export class UsuariosComponent implements OnInit {
+export class UsuariosComponent implements OnInit, OnDestroy {
 
   usuarios: Usuario[] = [];
   desde = 0;
@@ -17,15 +18,30 @@ export class UsuariosComponent implements OnInit {
   totalRegistros = 0;
   cargando = true;
 
+  subs: Subscription;
+
   constructor(
     public _usuarioService: UsuarioService,
     public _modalUploadService: ModalUploadService
-  ) { }
-
-  ngOnInit() {
+  ) {
     this.cargarUsuarios();
     this._modalUploadService.notificacion
-    .subscribe( resp => this.cargarUsuarios() );
+    .subscribe( () => {
+      this.cargarUsuarios();
+    });
+    this.subs = this._modalUploadService.notificacion
+    .subscribe( ( resp ) => {
+      if ( this._usuarioService.usuario._id === resp.usuario._id ) {
+        this._usuarioService.usuario.img = resp.usuario.img;
+        this._usuarioService.guardarStorage(this._usuarioService.token, resp.usuario);
+      }
+    });
+   }
+
+  ngOnInit() { }
+
+  ngOnDestroy() {
+    this.subs.unsubscribe();
   }
 
   mostrarModal( id: string ) {
