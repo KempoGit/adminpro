@@ -70,7 +70,16 @@ export class RegisterComponent implements OnInit {
     );
 
     this._usuarioService.crearUsuario( usuario )
-    .subscribe( resp => this.router.navigate(['/login']));
+    .subscribe(
+      resp => {
+        Swal.fire('Usuario creado', usuario.email, 'success');
+        this.router.navigate(['/login']);
+      },
+      err => {
+        Swal.fire(err.error.mensaje, err.error.errors.message, 'error');
+        console.log(err);
+      }
+    );
   }
 
 }

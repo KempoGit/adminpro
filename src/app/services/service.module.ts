@@ -3,16 +3,24 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { ModalUploadService } from '../components/modal-upload/modal-upload.service';
 
+// Service index
+// ----------------------------
 import {
-  SettingsService,
-  SidebarService,
-  SharedService,
+  // GUARDS
+  LoginGuardGuard,
+  AdminGuard,
+  // MANTENIMIENTO
   UsuarioService,
   HospitalService,
   MedicoService,
-  LoginGuardGuard,
-  SubirArchivoService
+  // FOTO
+  SubirArchivoService,
+  // OTROS
+  SettingsService,
+  SidebarService,
+  SharedService
 } from './service.index';
+// ----------------------------
 
 @NgModule({
   declarations: [],
@@ -21,15 +29,21 @@ import {
     HttpClientModule
   ],
   providers: [
-    SettingsService,
-    SidebarService,
-    SharedService,
+    // GUARDS
+    LoginGuardGuard,
+    AdminGuard,
+    // MANTENIMIENTO
     UsuarioService,
     HospitalService,
     MedicoService,
-    LoginGuardGuard,
+    // FOTO
     SubirArchivoService,
-    ModalUploadService
+    // OTROS
+    ModalUploadService,
+    SettingsService,
+    SidebarService,
+    SharedService
   ]
 })
+
 export class ServiceModule { }

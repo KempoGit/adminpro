@@ -30,10 +30,9 @@ export class UsuariosComponent implements OnInit, OnDestroy {
       this.cargarUsuarios();
     });
     this.subs = this._modalUploadService.notificacion
-    .subscribe( ( resp ) => {
-      if ( this._usuarioService.usuario._id === resp.usuario._id ) {
-        this._usuarioService.usuario.img = resp.usuario.img;
-        this._usuarioService.guardarStorage(this._usuarioService.token, resp.usuario);
+    .subscribe( (resp: any) => {
+      if ( resp.usuario._id === this._usuarioService.usuario._id) {
+        this._usuarioService.guardarStorage( this._usuarioService.token, resp.usuario, this._usuarioService.menu);
       }
     });
    }
@@ -112,7 +111,15 @@ export class UsuariosComponent implements OnInit, OnDestroy {
 
   guardarUsuario( usuario: Usuario ) {
     this._usuarioService.actualizarUsuario( usuario )
-    .subscribe();
+    .subscribe(
+      resp => {
+        Swal.fire('Usuario actualizado', usuario.nombre, 'success');
+      },
+      err => {
+        Swal.fire(err.error.mensaje, err.error.errors.message, 'error');
+        console.log(err);
+      }
+    );
   }
 
 }
