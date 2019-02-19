@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Usuario } from '../../models/usuario.model';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { URL_SERVICIOS } from '../../config/config';
-import { map } from 'rxjs/operators';
-import { catchError } from 'rxjs/operators';
-import { throwError } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { SubirArchivoService } from '../subir-archivo/subir-archivo.service';
 import { ModalUploadService } from '../../components/modal-upload/modal-upload.service';
+import { throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +25,23 @@ export class UsuarioService {
     public _modalUploadService: ModalUploadService
     ) {
     this.cargarStorage();
+  }
+
+  renuevaToken() {
+    let url = URL_SERVICIOS + 'login/renuevatoken?token=' + this.token;
+    return this.http.get( url )
+    .pipe(map( (resp: any ) => {
+      this.token = resp.token;
+      localStorage.setItem('token', this.token);
+      console.log('Token renovado');
+      return true;
+    }),
+    catchError( ( err: any ) => {
+      this.router.navigate(['/login']);
+      Swal.fire('No se pudo renovar el token', 'No fue posible renovar token', 'error');
+      return throwError( err );
+    })
+    );
   }
 
   estaLogueado() {

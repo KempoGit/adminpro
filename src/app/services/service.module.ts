@@ -9,6 +9,7 @@ import {
   // GUARDS
   LoginGuardGuard,
   AdminGuard,
+  VerificaTokenGuard,
   // MANTENIMIENTO
   UsuarioService,
   HospitalService,
@@ -32,6 +33,7 @@ import {
     // GUARDS
     LoginGuardGuard,
     AdminGuard,
+    VerificaTokenGuard,
     // MANTENIMIENTO
     UsuarioService,
     HospitalService,
